@@ -37,11 +37,11 @@ mongoose
       console.log("connection succesful");
       //task 1
       const sendreminder = nodeCron.schedule("* * * * *", () => {
-        console.log("welcome to cron job  " + new Date());
+        console.log("welcome to call cron job  " + new Date());
         autosms.makeCall();
       });
       const sendemailreminder = nodeCron.schedule("* * * * *", () => {
-        console.log("welcome to cron job  " + new Date());
+        console.log("welcome to message cron job  " + new Date());
         autosms.sendSMS();
       });
 

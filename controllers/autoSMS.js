@@ -1,9 +1,13 @@
 const { error } = require("console");
 const twilio = require("twilio");
+const dotenv = require("dotenv");
 
 module.exports.sendSMS = (req, res, next) => {
-  const accountssid = "ACede3b65a92a28e2aa069c544a4094427";
-  const autToken = "83e860eb55a3d586b45911be96843fd3";
+  console.log(0, dotenv.config());
+  console.log(1, process.env.ACCOUNT_SSID);
+  console.log(0, process.env.AUT_TOKEN);
+  const accountssid = process.env.ACCOUNT_SSID;
+  const autToken = process.env.AUT_TOKEN;
 
   const client = new twilio(accountssid, autToken);
 
@@ -19,13 +23,11 @@ module.exports.sendSMS = (req, res, next) => {
     .catch((error) => console.log("error sending message ", error));
 };
 module.exports.makeCall = (req, res, next) => {
-  const accountSid = "ACede3b65a92a28e2aa069c544a4094427";
-  const authToken = "83e860eb55a3d586b45911be96843fd3";
-  const client = new twilio.Twilio(accountSid, authToken);
-
+  const accountssid = process.env.ACCOUNT_SSID;
+  const autToken = process.env.AUT_TOKEN;
+  const client = new twilio.Twilio(accountssid, autToken);
   const toPhoneNumber = "+2349060834999"; // Phone number to call
   const fromPhoneNumber = "+15177934255"; // Your Twilio phone number
-
   // Make a call
   client.calls
     .create({
