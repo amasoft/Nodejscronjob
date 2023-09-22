@@ -1,0 +1,20 @@
+const { Router } = require("express");
+const authController = require("../controllers/authController");
+const autoEmail = require("../controllers/autoEmail");
+const autoSMS = require("../controllers/autoSMS");
+const { UserExist } = require("../middleware/authMiddleware");
+const router = Router();
+
+router.get("/signup", authController.signup_get);
+router.post("/signup", [UserExist], authController.signup_post);
+router.get("/login", authController.login_get);
+router.post("/login", authController.login);
+// router.post("/login", authController.login_post);
+router.get("/logout", authController.logout_get);
+router.post("/verifyEmail", authController.verifyEmail);
+router.post("/automail", autoEmail.automateEmail);
+router.post("/autoSMS", autoSMS.sendSMS);
+router.post("/addusertask", autoEmail.addUsersToDb);
+router.post("/getcelebrants", autoEmail.getAllUsers);
+router.post("/deletecelebrants", autoEmail.deleteAll);
+module.exports = router;
