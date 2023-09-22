@@ -1,4 +1,5 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/alluRoutes");
 const cookieParser = require("cookie-parser");
@@ -9,6 +10,7 @@ const { addUsersToDb } = require("./controllers/autoEmail");
 const automail = require("./controllers/autoEmail");
 const autosms = require("./controllers/autoSMS");
 // middleware
+dotenv.config();
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
@@ -21,6 +23,8 @@ app.use(authRoutes);
 // database connection
 const dbURI =
   "mongodb+srv://jwt:v2Z6Njhu4g85nPpP@cluster0.bjerbjj.mongodb.net/node-auth";
+const PORT = process.env.PORT || 5001;
+
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
@@ -28,7 +32,7 @@ mongoose
     useCreateIndex: true,
   })
   .then((result) =>
-    app.listen(5001, function () {
+    app.listen(PORT, function () {
       // console.log(result);
       console.log("connection succesful");
       //task 1

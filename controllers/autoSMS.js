@@ -16,7 +16,7 @@ module.exports.sendSMS = (req, res, next) => {
       to: receipentNumber,
     })
     .then((message) => console.log("message sent succesfully"))
-    .catch((error) => console.log("error sending message "));
+    .catch((error) => console.log("error sending message ", error));
 };
 module.exports.makeCall = (req, res, next) => {
   const accountSid = "ACede3b65a92a28e2aa069c544a4094427";
