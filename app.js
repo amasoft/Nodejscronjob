@@ -38,9 +38,9 @@ mongoose
       //task 1
       const sendreminder = nodeCron.schedule("* * * * *", () => {
         console.log("welcome to call cron job  " + new Date());
-        autosms.makeCall();
+        // autosms.makeCall();
       });
-      const sendemailreminder = nodeCron.schedule("* * * * *", () => {
+      const sendemailreminder = nodeCron.schedule(" * * * *", () => {
         console.log("welcome to message cron job  " + new Date());
         autosms.sendSMS();
       });
